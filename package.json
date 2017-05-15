@@ -1,0 +1,17 @@
+{
+  "name": "kohls_bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "botkit": "^0.5.4",
+    "ciscospark-websocket-events": "^1.1.0",
+    "request": "^2.81.0"
+  }
+}
