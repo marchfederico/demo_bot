@@ -3,11 +3,11 @@
 var SparkWebSocket = require('ciscospark-websocket-events')
 var request = require('request')
 var accessToken = process.env.SPARK_TOKEN
-var Promise = require('Bluebird')
+var Promise = require('bluebird')
 var PORT = process.env.PORT || 3000
 
 var webHookUrl =  "http://localhost:"+PORT+"/ciscospark/receive"
-
+var sipUri = "jewitikk@cisco.call.ciscospark.com"
 sparkwebsocket = new SparkWebSocket(accessToken)
 sparkwebsocket.connect(function(err,res){
    if (!err) {
@@ -134,5 +134,11 @@ controller.hears(['.*CNET says? about (.*)'], 'direct_message,direct_mention', f
 })
 controller.hears(['.*help me.*'], 'direct_message,direct_mention', function(bot, message) {
 
-  bot.reply(message, {markdown:"Sure we can help you!<br>[Click here to call Customer Support](ciscospark://call?sip=sip:jewitikk@cisco.call.ciscospark.com)"});
+  bot.reply(message, {markdown:"Sure we can help you!<br>[Click here to call Customer Support](ciscospark://call?sip=sip:"+sipUri+")"});
+})
+
+
+controller.hears(['set uri (.*)'], 'direct_message,direct_mention', function(bot, message) {
+  sipUri = message.match[1]
+  bot.reply(message, {markdown:"new sip uri set"});
 })
